@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import diaryData from '../diaries.json'
-import { DiaryEntry, NoSensitiveInfoDiaryEntry, Visibility, Weather } from '../types'
+import { DiaryEntry, NoSensitiveInfoDiaryEntry, newDiaryEntry } from './types'
 
 const diaries: DiaryEntry[] = diaryData as DiaryEntry[]
 
@@ -13,13 +13,10 @@ export const getEntriesWithoutSensitiveInfo = (): NoSensitiveInfoDiaryEntry[] =>
   })
 }
 
-export const addEntry = (date: string, weather: Weather, visibility: Visibility, comment: string): DiaryEntry => {
+export const addDiary = (newDiaryEntry: newDiaryEntry): DiaryEntry => {
   const newEntry = {
     id: Math.max(...diaries.map(diary => diary.id)) + 1,
-    date,
-    weather,
-    visibility,
-    comment
+    ...newDiaryEntry
   }
   diaryData.push(newEntry)
   return newEntry
