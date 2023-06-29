@@ -15,7 +15,7 @@ export const getEntriesWithoutSensitiveInfo = (): NoSensitiveInfoDiaryEntry[] =>
 
 export const addEntry = (date: string, weather: Weather, visibility: Visibility, comment: string): DiaryEntry => {
   const newEntry = {
-    id: diaryData[diaryData.length - 1].id + 1,
+    id: Math.max(...diaries.map(diary => diary.id)) + 1,
     date,
     weather,
     visibility,
